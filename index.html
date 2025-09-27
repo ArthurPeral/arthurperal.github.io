@@ -56,37 +56,83 @@
         <!-- Intro copy -->
         <header class="special container">
           <span class="icon solid fa-robot"></span>
-          <h2><!-- Optional: tweak this line -->Designing clean <strong>Data/AI</strong> tools with rigorous analysis and thoughtful UX.</h2>
-          <p>Below is a featured project now; the page is built to scale. Update one JSON block to add new projects and skills.</p>
+          <h2>Designing clean <strong>Data/AI</strong> tools with rigorous analysis and thoughtful UX.</h2>
+          <p>Below are the projects</p>
         </header>
 
         <!-- Projects -->
-        <section id="projects" class="wrapper style3 container special">
-          <header class="major">
-            <h2>Featured <strong>Project</strong></h2>
-            <p>(Edit the JSON below to add more later.)</p>
-          </header>
+<section id="projects" class="wrapper style3 container special">
+  <header class="major">
+    <h2>Featured <strong>Project</strong></h2>
+    <p>(Edit the JSON below to add more later.)</p>
+  </header>
 
-          <!-- Grid renders here -->
-          <div id="projects-grid" class="row"></div>
+  <!-- The grid where cards will be injected -->
+  <div id="projects-grid" class="row"></div>
 
-          <!-- TODO[project]: edit/add your projects here -->
-          <script id="projects-data" type="application/json">
-          {
-            "projects": [
-              {
-                "title": "Spécialités Advisor",
-                "desc": "Interactive advisor to help French students choose <em>spécialités</em> using grades, university entry rates, and keyword‑matched formations. Bilingual dashboard (FR/EN).",
-                "image": "images/pic01.jpg",  
-                "tags": ["Python", "Pandas", "Streamlit", "Data Viz"],
-                "links": [
-                  {"href": "https://github.com/arthurperal/specialites-advisor", "label": "Source ↗"},
-                  {"href": "https://arthurperal-specialites-advisor.streamlit.app/", "label": "Live demo ↗"},
-                ]
-              }
-            ]
-          }
-          </script>
+  <!-- JSON data (must be valid JSON) -->
+  <script id="projects-data" type="application/json">
+  {
+    "projects": [
+      {
+        "title": "Spécialités Advisor",
+        "desc": "Interactive advisor to help French students choose <em>spécialités</em> using grades, university entry rates, and keyword-matched formations. Bilingual dashboard (FR/EN).",
+        "image": "images/pic01.jpg",
+        "tags": ["Python", "Pandas", "Streamlit", "Data Viz"],
+        "links": [
+          {"href": "https://github.com/arthurperal/specialites-advisor", "label": "Source ↗"},
+          {"href": "https://arthurperal-specialites-advisor.streamlit.app/", "label": "Live demo ↗"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Renderer: turns JSON into cards -->
+  <script>
+  (function() {
+    const dataEl = document.getElementById('projects-data');
+    const grid = document.getElementById('projects-grid');
+    if (!dataEl) { console.error('Missing #projects-data'); return; }
+    if (!grid)   { console.error('Missing #projects-grid'); return; }
+
+    let data;
+    try {
+      data = JSON.parse(dataEl.textContent);
+    } catch (e) {
+      console.error('Projects JSON parse error:', e, dataEl.textContent);
+      return;
+    }
+
+    const projects = (data && data.projects) || [];
+    projects.forEach(function(p) {
+      const col = document.createElement('div');
+      col.className = 'col-6 col-12-narrower';
+
+      const tags = (p.tags || []).map(function(t) {
+        return '<span class="button small alt" style="margin:0 .25rem .25rem 0;">' + t + '</span>';
+      }).join(' ');
+
+      const links = (p.links || []).map(function(a) {
+        return '<a href="' + a.href + '" target="_blank" rel="noreferrer" class="button small">' + a.label + '</a>';
+      }).join(' ');
+
+      col.innerHTML =
+        '<section>' +
+          (p.image ? '<a class="image featured"><img src="' + p.image + '" alt=""></a>' : '') +
+          '<header><h3>' + p.title + '</h3></header>' +
+          '<p>' + (p.desc || '') + '</p>' +
+          (tags ? '<p>' + tags + '</p>' : '') +
+          (links ? '<p>' + links + '</p>' : '') +
+        '</section>';
+
+      grid.appendChild(col);
+    });
+  })();
+  </script>
+</section>
+
+
         </section>
 
         <!-- Skills -->
@@ -115,12 +161,12 @@
               <header>
                 <h2>About</h2>
               </header>
-              <p><!-- TODO: write 3–5 sentences about you, focusing on DS/AI interests, domains, and what you ship. -->
+              <p>
                 I'm a student in the HEC - Bocconi Double Degree in Data, Society and Organizations. I builds practical projects end‑to‑end: data gathering, modeling, and shipping usable apps. 
               </p>
               <footer>
                 <ul class="buttons">
-                  <li><a href="<!-- TODO[resume] -->assets/resume.pdf" class="button">View Résumé</a></li>
+                  <li><a href="assets/Arthur Peral CV.pdf" class="button">View Résumé</a></li>
                   <li><a href="#projects" class="button alt">See Projects</a></li>
                 </ul>
               </footer>
@@ -163,7 +209,7 @@
           <li><a href="mailto:arthur.peral@studbocconi.it" class="icon solid circle fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
-          <li>© <!-- TODO[name] -->Your Name</li>
+          <li>© Arthur Peral</li>
           <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
       </footer>
