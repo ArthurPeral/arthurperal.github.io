@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!-- 
-  PORTFOLIO — based on "Twenty" by HTML5 UP (CC BY 3.0)
-  Keep the design credit in the footer to comply with the license.
-
--->
 <html>
   <head>
     <title>Arthur Peral — Portfolio</title>
@@ -12,6 +7,14 @@
     <meta name="description" content="Data Science & AI — building clean, useful projects." />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+      /* Make Projects the star */
+      #banner { padding: 3.5em 0 2.5em; }
+      #banner .buttons.stacked li a.button { padding: .6em 1.1em; font-size: .95em; }
+      #projects .image.featured img { border-radius: 12px; }
+      #projects .row > div > section { box-shadow: 0 10px 24px rgba(2,8,23,.12); border-radius: 12px; padding-bottom: 1.5rem; }
+      #projects .button.small { border-radius: 999px; }
+    </style>
   </head>
   <body class="index is-preload">
     <div id="page-wrapper">
@@ -37,15 +40,17 @@
             <h2>Arthur Peral</h2>
           </header>
           <p>Data Science & AI — I turn data into helpful projects.
-          <br />Focused on many fields, including : education, health & longevity, and media analytics.</p>
+          <br />Focused on education, health & longevity, and media analytics.</p>
           <footer>
             <ul class="buttons stacked">
-              <li><a href="#projects" class="button fit scrolly">See Projects</a></li>
-              <li><a href="assets\Arthur Peral CV.pdf"" class="button fit alt">↗ View Résumé</a></li>
-              <li><a href="https://github.com/arthurperal" class="button fit alt">💻 GitHub</a></li>
-              <li><a href="https://www.linkedin.com/in/arthur-peral-b5060a351" class="button fit alt">🔗 LinkedIn</a></li>
-              <li><a href="mailto:arthur.peral@studbocconi.it" class="button fit alt">✉ Email</a></li>
+              <li><a href="#projects" class="button fit scrolly">Explore Projects</a></li>
             </ul>
+            <p style="margin-top:.75rem;font-size:.95em;opacity:.9">
+              <a href="assets/Arthur%20Peral%20CV.pdf" target="_blank" rel="noreferrer noopener">Résumé</a> ·
+              <a href="https://github.com/arthurperal" target="_blank" rel="noreferrer noopener">GitHub</a> ·
+              <a href="https://www.linkedin.com/in/arthur-peral-b5060a351" target="_blank" rel="noreferrer noopener">LinkedIn</a> ·
+              <a href="mailto:arthur.peral@studbocconi.it">Email</a>
+            </p>
           </footer>
         </div>
       </section>
@@ -56,83 +61,35 @@
         <!-- Intro copy -->
         <header class="special container">
           <span class="icon solid fa-robot"></span>
-          <h2>Designing clean <strong>Data/AI</strong> tools with rigorous analysis and thoughtful UX.</h2>
-          <p>Below are the projects</p>
+          <h2>Building clean <strong>Data/AI</strong> tools with rigorous analysis and thoughtful UX.</h2>
+          <p>Projects first. Everything else is just details.</p>
         </header>
 
         <!-- Projects -->
-<section id="projects" class="wrapper style3 container special">
-  <header class="major">
-    <h2>Featured <strong>Project</strong></h2>
-    <p>(Edit the JSON below to add more later.)</p>
-  </header>
+        <section id="projects" class="wrapper style3 container special">
+          <header class="major">
+            <h2>Projects</h2>
+            <p>Hands‑on data & AI work. New items appear as you update the JSON.</p>
+          </header>
 
-  <!-- The grid where cards will be injected -->
-  <div id="projects-grid" class="row"></div>
+          <div id="projects-grid" class="row"></div>
 
-  <!-- JSON data (must be valid JSON) -->
-  <script id="projects-data" type="application/json">
-  {
-    "projects": [
-      {
-        "title": "Spécialités Advisor",
-        "desc": "Interactive advisor to help French students choose <em>spécialités</em> using grades, university entry rates, and keyword-matched formations. Bilingual dashboard (FR/EN).",
-        "image": "images/pic01.jpg",
-        "tags": ["Python", "Pandas", "Streamlit", "Data Viz"],
-        "links": [
-          {"href": "https://github.com/arthurperal/specialites-advisor", "label": "Source ↗"},
-          {"href": "https://arthurperal-specialites-advisor.streamlit.app/", "label": "Live demo ↗"}
-        ]
-      }
-    ]
-  }
-  </script>
-
-  <!-- Renderer: turns JSON into cards -->
-  <script>
-  (function() {
-    const dataEl = document.getElementById('projects-data');
-    const grid = document.getElementById('projects-grid');
-    if (!dataEl) { console.error('Missing #projects-data'); return; }
-    if (!grid)   { console.error('Missing #projects-grid'); return; }
-
-    let data;
-    try {
-      data = JSON.parse(dataEl.textContent);
-    } catch (e) {
-      console.error('Projects JSON parse error:', e, dataEl.textContent);
-      return;
-    }
-
-    const projects = (data && data.projects) || [];
-    projects.forEach(function(p) {
-      const col = document.createElement('div');
-      col.className = 'col-6 col-12-narrower';
-
-      const tags = (p.tags || []).map(function(t) {
-        return '<span class="button small alt" style="margin:0 .25rem .25rem 0;">' + t + '</span>';
-      }).join(' ');
-
-      const links = (p.links || []).map(function(a) {
-        return '<a href="' + a.href + '" target="_blank" rel="noreferrer" class="button small">' + a.label + '</a>';
-      }).join(' ');
-
-      col.innerHTML =
-        '<section>' +
-          (p.image ? '<a class="image featured"><img src="' + p.image + '" alt=""></a>' : '') +
-          '<header><h3>' + p.title + '</h3></header>' +
-          '<p>' + (p.desc || '') + '</p>' +
-          (tags ? '<p>' + tags + '</p>' : '') +
-          (links ? '<p>' + links + '</p>' : '') +
-        '</section>';
-
-      grid.appendChild(col);
-    });
-  })();
-  </script>
-</section>
-
-
+          <script id="projects-data" type="application/json">
+          {
+            "projects": [
+              {
+                "title": "Spécialités Advisor",
+                "desc": "Interactive advisor to help French students choose <em>spécialités</em> using grades, university entry rates, and keyword‑matched formations. Bilingual dashboard (FR/EN).",
+                "image": "images/pic01.jpg",
+                "tags": ["Python", "Pandas", "Streamlit", "Data Viz"],
+                "links": [
+                  {"href": "https://github.com/arthurperal/specialites-advisor", "label": "Source ↗"},
+                  {"href": "https://arthurperal-specialites-advisor.streamlit.app/", "label": "Live demo ↗"}
+                ]
+              }
+            ]
+          }
+          </script>
         </section>
 
         <!-- Skills -->
@@ -162,11 +119,11 @@
                 <h2>About</h2>
               </header>
               <p>
-                I'm a student in the HEC - Bocconi Double Degree in Data, Society and Organizations. I builds practical projects end‑to‑end: data gathering, modeling, and shipping usable apps. 
+                I'm a student in the HEC - Bocconi Double Degree in Data, Society and Organizations. I builds practical projects end‑to‑end: data gathering, modeling, and shipping usable apps.
               </p>
               <footer>
                 <ul class="buttons">
-                  <li><a href="assets/Arthur Peral CV.pdf" class="button">View Résumé</a></li>
+                  <li><a href="assets/Arthur%20Peral%20CV.pdf" class="button">View Résumé</a></li>
                   <li><a href="#projects" class="button alt">See Projects</a></li>
                 </ul>
               </footer>
@@ -204,9 +161,9 @@
       <!-- Footer -->
       <footer id="footer">
         <ul class="icons">
-          <li><a href="https://github.com/arthurperal" class="icon brands circle fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="https://www.linkedin.com/in/arthur-peral-b5060a351" class="icon brands circle fa-linkedin"><span class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:arthur.peral@studbocconi.it" class="icon solid circle fa-envelope"><span class="label">Email</span></a></li>
+          <li><a href="<!-- TODO[github] -->https://github.com/yourusername" class="icon brands circle fa-github"><span class="label">GitHub</span></a></li>
+          <li><a href="<!-- TODO[linkedin] -->https://www.linkedin.com/in/yourlinkedin/" class="icon brands circle fa-linkedin"><span class="label">LinkedIn</span></a></li>
+          <li><a href="mailto:<!-- TODO[email] -->your.email@example.com" class="icon solid circle fa-envelope"><span class="label">Email</span></a></li>
         </ul>
         <ul class="copyright">
           <li>© Arthur Peral</li>
@@ -268,17 +225,18 @@
       })();
     </script>
 
+    <!-- Optional: JSON-LD for SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Arthur Peral",
-      "url": "https://arthurperal/arthurperal.github.io/",
+      "url": "https://arthurperal.github.io/",
       "sameAs": [
         "https://github.com/arthurperal",
         "https://www.linkedin.com/in/arthur-peral-b5060a351"
       ],
-      "jobTitle": "Data Analyst,Scientist / Student",
+      "jobTitle": "Data Scientist / Student",
       "knowsAbout": ["Python", "R", "SQL", "Machine Learning", "Data Visualization"]
     }
     </script>
